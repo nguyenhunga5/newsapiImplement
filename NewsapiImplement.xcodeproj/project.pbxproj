@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2154CB23388EF400A9CB5D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154CA23388EF400A9CB5D /* BaseViewController.swift */; };
+		1A2154D023388F8200A9CB5D /* NewsBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154CF23388F8200A9CB5D /* NewsBaseViewController.swift */; };
+		1A2154D223388FE300A9CB5D /* TopHeadlineNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154D123388FE300A9CB5D /* TopHeadlineNewsViewController.swift */; };
+		1A2154D423388FFE00A9CB5D /* CustomNewsBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154D323388FFE00A9CB5D /* CustomNewsBaseViewController.swift */; };
+		1A2154D62338900E00A9CB5D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154D52338900E00A9CB5D /* ProfileViewController.swift */; };
+		1A2154D9233892A200A9CB5D /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154D8233892A200A9CB5D /* NewsDetailViewController.swift */; };
+		1A2154DB2338937B00A9CB5D /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154DA2338937B00A9CB5D /* ConfigService.swift */; };
 		1ABFD69923387C6200C092A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFD69823387C6200C092A2 /* AppDelegate.swift */; };
 		1ABFD6A223387C6200C092A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABFD6A023387C6200C092A2 /* Main.storyboard */; };
 		1ABFD6A423387C6400C092A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABFD6A323387C6400C092A2 /* Assets.xcassets */; };
@@ -39,6 +46,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A2154CA23388EF400A9CB5D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1A2154CF23388F8200A9CB5D /* NewsBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBaseViewController.swift; sourceTree = "<group>"; };
+		1A2154D123388FE300A9CB5D /* TopHeadlineNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlineNewsViewController.swift; sourceTree = "<group>"; };
+		1A2154D323388FFE00A9CB5D /* CustomNewsBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsBaseViewController.swift; sourceTree = "<group>"; };
+		1A2154D52338900E00A9CB5D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1A2154D8233892A200A9CB5D /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		1A2154DA2338937B00A9CB5D /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
 		1ABFD69523387C6200C092A2 /* NewsapiImplement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsapiImplement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABFD69823387C6200C092A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ABFD6A123387C6200C092A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +107,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2154CC23388F1400A9CB5D /* Top Headline News */ = {
+			isa = PBXGroup;
+			children = (
+				1A2154D123388FE300A9CB5D /* TopHeadlineNewsViewController.swift */,
+			);
+			path = "Top Headline News";
+			sourceTree = "<group>";
+		};
+		1A2154CD23388F3100A9CB5D /* Custom news */ = {
+			isa = PBXGroup;
+			children = (
+				1A2154D323388FFE00A9CB5D /* CustomNewsBaseViewController.swift */,
+			);
+			path = "Custom news";
+			sourceTree = "<group>";
+		};
+		1A2154CE23388F4300A9CB5D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1A2154D52338900E00A9CB5D /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		1A2154D72338928E00A9CB5D /* News Details */ = {
+			isa = PBXGroup;
+			children = (
+				1A2154D8233892A200A9CB5D /* NewsDetailViewController.swift */,
+			);
+			path = "News Details";
+			sourceTree = "<group>";
+		};
 		1ABFD68C23387C6200C092A2 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +199,7 @@
 		1ABFD6CA233886C700C092A2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1A2154DA2338937B00A9CB5D /* ConfigService.swift */,
 				1ABFD6CF233887EF00C092A2 /* BaseService.swift */,
 			);
 			path = Services;
@@ -161,6 +208,12 @@
 		1ABFD6CB233886D000C092A2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A2154CA23388EF400A9CB5D /* BaseViewController.swift */,
+				1A2154CF23388F8200A9CB5D /* NewsBaseViewController.swift */,
+				1A2154D72338928E00A9CB5D /* News Details */,
+				1A2154CC23388F1400A9CB5D /* Top Headline News */,
+				1A2154CD23388F3100A9CB5D /* Custom news */,
+				1A2154CE23388F4300A9CB5D /* Profile */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -432,10 +485,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A2154D023388F8200A9CB5D /* NewsBaseViewController.swift in Sources */,
+				1A2154CB23388EF400A9CB5D /* BaseViewController.swift in Sources */,
+				1A2154DB2338937B00A9CB5D /* ConfigService.swift in Sources */,
 				1ABFD6D22338884900C092A2 /* UIViewExReuseable.swift in Sources */,
+				1A2154D423388FFE00A9CB5D /* CustomNewsBaseViewController.swift in Sources */,
+				1A2154D9233892A200A9CB5D /* NewsDetailViewController.swift in Sources */,
 				1ABFD69923387C6200C092A2 /* AppDelegate.swift in Sources */,
 				1ABFD6D0233887EF00C092A2 /* BaseService.swift in Sources */,
+				1A2154D62338900E00A9CB5D /* ProfileViewController.swift in Sources */,
 				1ABFD6D42338888100C092A2 /* UIViewControllerExt.swift in Sources */,
+				1A2154D223388FE300A9CB5D /* TopHeadlineNewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

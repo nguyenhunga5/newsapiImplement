@@ -14,6 +14,9 @@ target 'NewsapiImplement' do
   pod 'TextFieldEffects'
   pod 'MBProgressHUD'
   pod 'EasyPeasy'
+  
+  # Keychain
+  pod 'KeychainSwift'
 
   target 'NewsapiImplementTests' do
     inherit! :search_paths
