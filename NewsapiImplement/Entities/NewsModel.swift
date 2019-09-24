@@ -11,8 +11,8 @@ import ObjectMapper
 
 class NewsModel : NSObject, Mappable {
 
-    var author : AnyObject?
-    var content : AnyObject?
+    var author : String?
+    var content : String?
     var descriptionField : String?
     var publishedAt : String?
     var source : SourceModel?

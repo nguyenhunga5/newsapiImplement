@@ -12,8 +12,20 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tabBarItem?.title = "News"
+        
+        tabBarController?.viewControllers?.forEach({
+            let title: String
+            let vc = ($0 as! UINavigationController).viewControllers[0]
+            if let _ = vc as? TopHeadlineNewsViewController {
+                title = "Top Headline News"
+            } else if let _ = vc as? CustomNewsBaseViewController {
+                title = "Custom News"
+            } else {
+                title = "Profile"
+            }
+            
+            vc.title = title
+        })
     }
     
 
@@ -27,4 +39,8 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
     }
     */
 
+    override func configRequest() {
+        let country = ConfigService.shared.stored(for: .country) ?? "us"
+        request = NewsService.NewsRequest(query: country, pageSize: 20, totalNews: 0, currentPage: 0)
+    }
 }

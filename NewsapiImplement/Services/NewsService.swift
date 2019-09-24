@@ -27,7 +27,7 @@ class NewsService: BaseService {
         }
         
         func calculatorForReload() {
-            currentPage = 0
+            currentPage = 1
             totalNews = 0
         }
         
@@ -61,7 +61,7 @@ class NewsService: BaseService {
     func topHeadline(_ request: NewsRequest, complete: @escaping NewsCallback) {
         self.objectResponseRequest(.get, endPoint: NewsEnpoint.topHeadline(request: request)) { (response: DataResponse<ResponseModel>) in
             if let response = response.value {
-                
+                request.totalNews = response.totalResults
                 complete(response.articles, response.status ?? .error, response.code, response.message)
                 
             } else {
@@ -73,7 +73,7 @@ class NewsService: BaseService {
     func customSearch(_ request: NewsRequest, complete: @escaping NewsCallback) {
         self.objectResponseRequest(.get, endPoint: NewsEnpoint.customSearch(request: request)) { (response: DataResponse<ResponseModel>) in
             if let response = response.value {
-                
+                request.totalNews = response.totalResults
                 complete(response.articles, response.status ?? .error, response.code, response.message)
                 
             } else {

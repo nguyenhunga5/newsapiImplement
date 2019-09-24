@@ -58,4 +58,8 @@ class ConfigService: NSObject {
     func stored(for key: Key) -> String? {
         return self.keychain.get(key.rawValue)
     }
+    
+    func clear() {
+        keychain.clear()
+    }
 }

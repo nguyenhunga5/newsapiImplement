@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup logger
         configLog(configs: [ConsoleDestination()])
-        
+        ConfigService.shared.clear()
         return true
     }
 }

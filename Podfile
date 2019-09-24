@@ -22,6 +22,7 @@ target 'NewsapiImplement' do
   pod 'SwiftyBeaver'
   
   pod 'MRPullToRefreshLoadMore', :git => 'https://github.com/nguyenhunga5/MRPullToRefreshLoadMore.git'
+  pod 'BonMot'
 
   target 'NewsapiImplementTests' do
     inherit! :search_paths

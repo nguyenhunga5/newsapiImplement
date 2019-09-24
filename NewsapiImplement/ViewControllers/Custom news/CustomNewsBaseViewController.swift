@@ -12,8 +12,6 @@ class CustomNewsBaseViewController: NewsBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tabBarItem?.title = "Custom"
     }
     
 
@@ -26,5 +24,10 @@ class CustomNewsBaseViewController: NewsBaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func configRequest() {
+        let country = ConfigService.shared.stored(for: .country) ?? "us"
+        request = NewsService.NewsRequest(query: country, pageSize: 20, totalNews: 0, currentPage: 0)
+    }
 
 }
