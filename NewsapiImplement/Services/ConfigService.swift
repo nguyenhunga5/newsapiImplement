@@ -12,6 +12,7 @@ import KeychainSwift
 class ConfigService: NSObject {
     enum Key: String {
         case country
+        case keyword
         case username
     }
     
@@ -32,7 +33,7 @@ class ConfigService: NSObject {
     
     override init() {
         super.init()
-        
+        /*
         var currentCountry = self.stored(for: .country)
         if currentCountry == nil {
             if let country = Locale.current.regionCode, ConfigService.supportCountryCode[country] != nil {
@@ -43,6 +44,7 @@ class ConfigService: NSObject {
             
             self.store(currentCountry, for: .country)
         }
+         */
     }
     
     func store(_ string: String?, for key: Key) {

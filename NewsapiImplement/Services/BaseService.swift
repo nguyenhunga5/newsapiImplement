@@ -22,14 +22,7 @@ protocol EndPoint {
 extension EndPoint {
     
     func encoded() -> String {
-        var requestUrl = apiUrl + self.serializers
-        
-        if requestUrl.range(of: "?") != nil {
-            requestUrl += "&apiKey=" + apiKey
-        } else {
-            requestUrl += "?apiKey=" + apiKey
-        }
-        
+        let requestUrl = apiUrl + self.serializers
         return requestUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? requestUrl
     }
 }
@@ -61,16 +54,13 @@ class BaseService: NSObject {
                      params: Parameters? = nil,
                      encoding: ParameterEncoding = JSONEncoding.default) -> DataRequest {
         
-        var sendHeaders: HTTPHeaders
-        if let headers = headers {
-            sendHeaders = headers
-        } else {
-            sendHeaders = HTTPHeaders()
-        }
+        var sendHeaders = headers ?? HTTPHeaders()
         
         if sendHeaders["Accept"] == nil {
             sendHeaders["Accept"] = "application/json"
         }
+        
+        sendHeaders["x-api-key"] = apiKey
         
         let request = Alamofire.request(endPoint.encoded(), method: method,
                                  parameters: params,
@@ -104,5 +94,42 @@ class BaseService: NSObject {
         request.responseArray(completionHandler: completionHandler)
         
         return request
+    }
+}
+
+class ResponseModel: NSObject, Mappable {
+    
+    enum Code: String {
+        case apiKeyDisabled, apiKeyExhausted, apiKeyInvalid
+        case apiKeyMissing, parameterInvalid, parametersMissing
+        case rateLimited, sourcesTooMany, sourceDoesNotExist, unexpectedError
+    }
+    
+    enum Status: String {
+        case ok, error
+    }
+    
+    var code : Code?
+    var message : String?
+    var status : Status?
+    var totalResults: Int = 0
+    var articles: [NewsModel]?
+
+
+    class func newInstance(map: Map) -> Mappable? {
+        return ResponseModel()
+    }
+    required init?(map: Map){}
+    private override init(){}
+
+    func mapping(map: Map)
+    {
+        code <- map["code"]
+        message <- map["message"]
+        status <- map["status"]
+        
+        // If have data
+        totalResults <- map["totalResults"]
+        articles <- map["articles"]
     }
 }

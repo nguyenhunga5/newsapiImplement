@@ -9,10 +9,11 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import MRPullToRefreshLoadMore
 
 class NewsBaseViewController: BaseViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: MRTableView!
     
     let disposeBag = DisposeBag()
     
@@ -34,7 +35,29 @@ class NewsBaseViewController: BaseViewController {
     */
     
     func configTableView() {
-        
+        tableView.pullToRefresh.pullToRefreshLoadMoreDelegate = self
+        tableView.pullToRefresh.indicatorTintColor = UIColor.gray
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
+    
+    func refershData() {
+        tableView.pullToRefresh.setPullState(state: MRPullToRefreshLoadMore.ViewState.Normal)
+    }
+    
+    func loadMoreData() {
+        tableView.pullToRefresh.setLoadMoreState(state: MRPullToRefreshLoadMore.ViewState.Normal)
+    }
+}
+
+extension NewsBaseViewController: MRPullToRefreshLoadMoreDelegate {
+    func viewShouldRefresh(scrollView: UIScrollView) {
+    
+    }
+    
+    func viewShouldLoadMore(scrollView: UIScrollView) {
+        
+    }
+    
+    
 }
