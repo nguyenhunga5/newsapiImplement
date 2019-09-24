@@ -23,6 +23,7 @@ target 'NewsapiImplement' do
   
   pod 'MRPullToRefreshLoadMore', :git => 'https://github.com/nguyenhunga5/MRPullToRefreshLoadMore.git'
   pod 'BonMot'
+  pod 'EZSwiftExtensions' , :git => 'https://github.com/goktugyil/EZSwiftExtensions.git', :branch => 'ceeyang-Swift5.0'
 
   target 'NewsapiImplementTests' do
     inherit! :search_paths

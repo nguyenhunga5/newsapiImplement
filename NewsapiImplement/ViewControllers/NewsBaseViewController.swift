@@ -54,6 +54,19 @@ class NewsBaseViewController: BaseViewController {
         { tv, model, cell in
             cell.model = model
         }.disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected.subscribe(onNext: {[weak self] (indexPath) in
+            self?.tableView.deselectRow(at: indexPath, animated: true)
+            
+            if let model = self?.cellDatas.value[indexPath.row],
+                let vc = self?.storyboard?.instantiateViewController(withIdentifier:
+                    "NewsDetailViewController"
+                    ) as? NewsDetailViewController {
+                vc.model = model
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+            }).disposed(by: disposeBag)
     }
 
     func endLoad() {
@@ -61,38 +74,40 @@ class NewsBaseViewController: BaseViewController {
         tableView.pullToRefresh.setLoadMoreState(state: MRPullToRefreshLoadMore.ViewState.Normal)
     }
     
-    func refershData() {
-        request?.calculatorForReload()
-        self.showOrHideLoading(isShow: true)
-        newsService.topHeadline(request) {[weak self] newsModels, status, code, message in
-            self?.showOrHideLoading(isShow: false)
-            self?.cellDatas.accept([])
-            if let message = message {
-                self?.showLoadDataError(message: message)
-            } else {
-                self?.appendData(newsModels ?? [])
-            }
-            
-            self?.endLoad()
+    func processRefreshData(_ newsModels: [NewsModel]?,
+                            status: ResponseModel.Status,
+                            code: ResponseModel.Code?,
+                            message: String?) {
+        
+        self.cellDatas.accept([])
+        if let message = message {
+            self.showLoadDataError(message: message)
+        } else {
+            self.appendData(newsModels ?? [])
         }
+        
+        self.endLoad()
+    }
+    
+    func processLoadMoreData(_ newsModels: [NewsModel]?,
+                            status: ResponseModel.Status,
+                            code: ResponseModel.Code?,
+                            message: String?) {
+        if let message = message {
+            self.showLoadDataError(message: message)
+        } else {
+            self.appendData(newsModels ?? [])
+        }
+        
+        self.endLoad()
+    }
+    
+    func refershData() {
+        
     }
     
     func loadMoreData() {
-        if request.canLoadMore() {
-            request.calculatorForLoadMore()
-            newsService.customSearch(request) {[weak self] newsModels, status, code, message in
-                self?.showOrHideLoading(isShow: false)
-                if let message = message {
-                    self?.showLoadDataError(message: message)
-                } else {
-                    self?.appendData(newsModels ?? [])
-                }
-                
-                self?.endLoad()
-            }
-        } else {
-            self.endLoad()
-        }
+        
     }
     
     func showLoadDataError(message: String) {

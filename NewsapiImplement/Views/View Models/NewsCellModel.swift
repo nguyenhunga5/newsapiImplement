@@ -13,6 +13,7 @@ class NewsCellModel: NSObject {
     let title: NSAttributedString
     let author: NSAttributedString
     let source: NSAttributedString
+    let publishedAt: NSAttributedString?
     let descriptionAS: NSAttributedString
     let imageUrl: URL?
     let newsModel: NewsModel
@@ -31,7 +32,7 @@ class NewsCellModel: NSObject {
         
         let prefixStyle = StringStyle(
             .font(UIFont.systemFont(ofSize: 12)),
-            .color(.black)
+            .color(.systemTeal)
         )
         let prefix = "<title>%@: </title>"
         
@@ -44,6 +45,15 @@ class NewsCellModel: NSObject {
         source = (sourceTitle + model.source!.name!).styled(with: style, .xmlRules([
             .style("title", prefixStyle)
         ]))
+        
+        if let dateStr = model.publishedAt, let createDate = Date(httpDateString: dateStr) {
+            let publishedAtTitle = String(format: prefix, "published at")
+            publishedAt = (publishedAtTitle + createDate.toString(dateStyle: .full, timeStyle: .medium)).styled(with: style, .xmlRules([
+                .style("title", prefixStyle)
+            ]))
+        } else {
+            publishedAt = nil
+        }
         
         descriptionAS = (model.descriptionField ?? "").styled(with: style)
         

@@ -43,4 +43,25 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
         let country = ConfigService.shared.stored(for: .country) ?? "us"
         request = NewsService.NewsRequest(query: country, pageSize: 20, totalNews: 0, currentPage: 0)
     }
+    
+    override func refershData() {
+        request?.calculatorForReload()
+        self.showOrHideLoading(isShow: true)
+        newsService.topHeadline(request) {[weak self] newsModels, status, code, message in
+            self?.showOrHideLoading(isShow: false)
+            self?.processRefreshData(newsModels, status: status, code: code, message: message)
+        }
+    }
+    
+    override func loadMoreData() {
+        if request.canLoadMore() {
+            request.calculatorForLoadMore()
+            newsService.topHeadline(request) {[weak self] newsModels, status, code, message in
+                self?.showOrHideLoading(isShow: false)
+                self?.processLoadMoreData(newsModels, status: status, code: code, message: message)
+            }
+        } else {
+            self.endLoad()
+        }
+    }
 }

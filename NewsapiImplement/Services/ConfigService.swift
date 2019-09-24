@@ -16,6 +16,14 @@ class ConfigService: NSObject {
         case username
     }
     
+    enum Keyword: String {
+        case bitcoin, apple, earthquake, animal
+        
+        static var array: [Keyword] {
+            return [.bitcoin, .apple, .earthquake, .animal]
+        }
+    }
+    
     static let shared = ConfigService()
     
     let keychain = KeychainSwift()
