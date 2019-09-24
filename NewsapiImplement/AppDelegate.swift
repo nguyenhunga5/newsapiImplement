@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup logger
         configLog(configs: [ConsoleDestination()])
-        
+
         return true
     }
 }

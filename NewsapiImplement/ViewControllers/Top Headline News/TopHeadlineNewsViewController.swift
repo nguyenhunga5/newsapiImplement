@@ -12,10 +12,28 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tabBarItem?.title = "News"
+        
+        tabBarController?.viewControllers?.forEach({
+            let title: String
+            let vc = ($0 as! UINavigationController).viewControllers[0]
+            if let _ = vc as? TopHeadlineNewsViewController {
+                title = "Top Headline News"
+            } else if let _ = vc as? CustomNewsBaseViewController {
+                title = "Custom News"
+            } else {
+                title = "Profile"
+            }
+            
+            vc.title = title
+        })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeCountryNotification(_:)),
+                                               name: .countryChanged, object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .countryChanged, object: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -27,4 +45,43 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
     }
     */
 
+    override func configRequest() {
+        let country = ConfigService.shared.stored(for: .country)
+        
+        if country == nil {
+            ConfigService.shared.changeCountry(from: self)
+            return
+        }
+        
+        request = NewsService.NewsRequest(query: country!, pageSize: 20, totalNews: 0, currentPage: 0)
+    }
+    
+    override func refershData() {
+        if request == nil {
+            return
+        }
+        request?.calculatorForReload()
+        self.showOrHideLoading(isShow: true)
+        newsService.topHeadline(request) {[weak self] newsModels, status, code, message in
+            self?.showOrHideLoading(isShow: false)
+            self?.processRefreshData(newsModels, status: status, code: code, message: message)
+        }
+    }
+    
+    override func loadMoreData() {
+        if request.canLoadMore() {
+            request.calculatorForLoadMore()
+            newsService.topHeadline(request) {[weak self] newsModels, status, code, message in
+                self?.showOrHideLoading(isShow: false)
+                self?.processLoadMoreData(newsModels, status: status, code: code, message: message)
+            }
+        } else {
+            self.endLoad()
+        }
+    }
+    
+    @objc func changeCountryNotification(_ notification: Notification) {
+        configRequest()
+        refershData()
+    }
 }

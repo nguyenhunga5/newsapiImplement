@@ -11,7 +11,7 @@ import ObjectMapper
 
 class SourceModel : NSObject, Mappable {
 
-    var id : AnyObject?
+    var id : String?
     var name : String?
 
 

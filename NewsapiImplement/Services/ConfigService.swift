@@ -16,6 +16,14 @@ class ConfigService: NSObject {
         case username
     }
     
+    enum Keyword: String {
+        case bitcoin, apple, earthquake, animal
+        
+        static var array: [Keyword] {
+            return [.bitcoin, .apple, .earthquake, .animal]
+        }
+    }
+    
     static let shared = ConfigService()
     
     let keychain = KeychainSwift()
@@ -33,18 +41,6 @@ class ConfigService: NSObject {
     
     override init() {
         super.init()
-        /*
-        var currentCountry = self.stored(for: .country)
-        if currentCountry == nil {
-            if let country = Locale.current.regionCode, ConfigService.supportCountryCode[country] != nil {
-                currentCountry = country
-            } else {
-                currentCountry = "us"
-            }
-            
-            self.store(currentCountry, for: .country)
-        }
-         */
     }
     
     func store(_ string: String?, for key: Key) {
@@ -58,4 +54,48 @@ class ConfigService: NSObject {
     func stored(for key: Key) -> String? {
         return self.keychain.get(key.rawValue)
     }
+    
+    func clear() {
+        keychain.clear()
+    }
+    
+    func changeCountry(from viewController: UIViewController) {
+        let alertController = UIAlertController(title: "Countries",
+                                                message: "Choose one country",
+                                                preferredStyle: .actionSheet)
+        let arr = ConfigService.supportCountryCode
+        let selectedCountry = stored(for: .country)
+        
+        for country in arr {
+            alertController.addAction(
+                UIAlertAction(title: country.value,
+                              style: .default,
+                              handler: {[weak self, weak alertController] _ in
+                                self?.updateCountry(country.key)
+                                alertController?.dismiss(animated: true, completion: nil)
+                })
+            )
+        }
+        
+        if selectedCountry != nil {
+            alertController.addAction(
+                UIAlertAction(title: "Cancel",
+                              style: .cancel,
+                              handler: {[weak alertController] _ in
+                                alertController?.dismiss(animated: true, completion: nil)
+                })
+            )
+        }
+        
+        viewController.present(alertController, animated: true, completion: nil)
+    }
+    
+    func updateCountry(_ country: String) {
+        store(country, for: .country)
+        NotificationCenter.default.post(name: .countryChanged, object: nil)
+    }
+}
+
+extension Notification.Name {
+    static let countryChanged = NSNotification.Name(rawValue: "CountryChangedNotification")
 }
