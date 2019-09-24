@@ -44,7 +44,7 @@ class CustomNewsBaseViewController: NewsBaseViewController {
         
         let keyword = ConfigService.Keyword(rawValue: keywordStr!) ?? .bitcoin
         let index = ConfigService.Keyword.array.firstIndex(of: keyword) ?? 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.keywordSegmentedControl.selectedSegmentIndex = index
         }
         

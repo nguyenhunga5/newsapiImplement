@@ -26,8 +26,14 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
             
             vc.title = title
         })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeCountryNotification(_:)),
+                                               name: .countryChanged, object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .countryChanged, object: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -40,11 +46,20 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
     */
 
     override func configRequest() {
-        let country = ConfigService.shared.stored(for: .country) ?? "us"
-        request = NewsService.NewsRequest(query: country, pageSize: 20, totalNews: 0, currentPage: 0)
+        let country = ConfigService.shared.stored(for: .country)
+        
+        if country == nil {
+            ConfigService.shared.changeCountry(from: self)
+            return
+        }
+        
+        request = NewsService.NewsRequest(query: country!, pageSize: 20, totalNews: 0, currentPage: 0)
     }
     
     override func refershData() {
+        if request == nil {
+            return
+        }
         request?.calculatorForReload()
         self.showOrHideLoading(isShow: true)
         newsService.topHeadline(request) {[weak self] newsModels, status, code, message in
@@ -63,5 +78,10 @@ class TopHeadlineNewsViewController: NewsBaseViewController {
         } else {
             self.endLoad()
         }
+    }
+    
+    @objc func changeCountryNotification(_ notification: Notification) {
+        configRequest()
+        refershData()
     }
 }

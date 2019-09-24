@@ -37,7 +37,8 @@ class NewsCellModel: NSObject {
         let prefix = "<title>%@: </title>"
         
         let authorTitle = String(format: prefix, "author")
-        author = (authorTitle + (model.author ?? "N/A")).styled(with: style.byAdding(.xmlRules([
+        let author = (model.author == nil || model.author!.count == 0) ? "N/A" : model.author!
+        self.author = (authorTitle + author).styled(with: style.byAdding(.xmlRules([
             .style("title", prefixStyle)
         ])))
         

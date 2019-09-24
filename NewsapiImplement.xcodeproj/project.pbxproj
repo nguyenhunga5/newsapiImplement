@@ -14,6 +14,9 @@
 		1A2154D62338900E00A9CB5D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154D52338900E00A9CB5D /* ProfileViewController.swift */; };
 		1A2154D9233892A200A9CB5D /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154D8233892A200A9CB5D /* NewsDetailViewController.swift */; };
 		1A2154DB2338937B00A9CB5D /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154DA2338937B00A9CB5D /* ConfigService.swift */; };
+		1A284AE3233A6D1600B5B279 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A284AE2233A6D1600B5B279 /* NavigationController.swift */; };
+		1A284AE5233A864300B5B279 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A284AE4233A864300B5B279 /* UIViewExt.swift */; };
+		1A284AE7233A8C4C00B5B279 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A284AE6233A8C4C00B5B279 /* StringExt.swift */; };
 		1A58C5E22339CBF000EDD427 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8949792339B19300C39E09 /* NewsService.swift */; };
 		1A58C5E32339CBFC00EDD427 /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2154DA2338937B00A9CB5D /* ConfigService.swift */; };
 		1A58C5E42339CC0200EDD427 /* SourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEB83D72338A07B00FAFFA9 /* SourceModel.swift */; };
@@ -67,6 +70,9 @@
 		1A2154D52338900E00A9CB5D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1A2154D8233892A200A9CB5D /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		1A2154DA2338937B00A9CB5D /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
+		1A284AE2233A6D1600B5B279 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		1A284AE4233A864300B5B279 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		1A284AE6233A8C4C00B5B279 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		1A58C5E72339CD6B00EDD427 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1A6D67682339D493000B28E0 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		1A6D67692339D493000B28E0 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -240,6 +246,7 @@
 		1ABFD6CB233886D000C092A2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A284AE2233A6D1600B5B279 /* NavigationController.swift */,
 				1A2154CA23388EF400A9CB5D /* BaseViewController.swift */,
 				1A2154CF23388F8200A9CB5D /* NewsBaseViewController.swift */,
 				1A2154D72338928E00A9CB5D /* News Details */,
@@ -266,6 +273,8 @@
 				1ABFD6D12338884900C092A2 /* UIViewExReuseable.swift */,
 				1ABFD6D32338888100C092A2 /* UIViewControllerExt.swift */,
 				1A89497723391E9C00C39E09 /* UITableViewExt.swift */,
+				1A284AE4233A864300B5B279 /* UIViewExt.swift */,
+				1A284AE6233A8C4C00B5B279 /* StringExt.swift */,
 			);
 			path = "Class Extension";
 			sourceTree = "<group>";
@@ -534,8 +543,11 @@
 				1A58C5E82339CD6B00EDD427 /* Logger.swift in Sources */,
 				1A2154D9233892A200A9CB5D /* NewsDetailViewController.swift in Sources */,
 				1ABFD69923387C6200C092A2 /* AppDelegate.swift in Sources */,
+				1A284AE7233A8C4C00B5B279 /* StringExt.swift in Sources */,
 				1ABFD6D0233887EF00C092A2 /* BaseService.swift in Sources */,
 				1A2154D62338900E00A9CB5D /* ProfileViewController.swift in Sources */,
+				1A284AE5233A864300B5B279 /* UIViewExt.swift in Sources */,
+				1A284AE3233A6D1600B5B279 /* NavigationController.swift in Sources */,
 				1AEB83DA2338A0C500FAFFA9 /* NewsModel.swift in Sources */,
 				1ABFD6D42338888100C092A2 /* UIViewControllerExt.swift in Sources */,
 				1A6D676E2339D8DF000B28E0 /* NewsCellModel.swift in Sources */,
